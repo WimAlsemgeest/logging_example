@@ -1,8 +1,11 @@
 import os
+import sys
 import logging
 import logging.config
-
 import yaml
+
+import mymodule.mymodule as myfunctions
+
 
 def example_function() -> None:
     """Example of logging from a function."""
@@ -21,12 +24,15 @@ def main() -> None:
 
     # ------------------------------------------------------------------------
     #   Loading the yaml file for logging.
-    if os.path.exists('logging.yaml'):
-        with open('logging.yaml', 'r') as f:
-            config = yaml.safe_load(f.read())
-        logging.config.dictConfig(config)
-    else:
-        logging.basicConfig(level=logging.INFO)
+    try:
+        if os.path.exists('logging.yaml'):
+            with open('logging.yaml', 'r') as f:
+                config = yaml.safe_load(f.read())
+            logging.config.dictConfig(config)
+        else:
+            logging.basicConfig(level=logging.INFO)
+    except ValueError:
+        sys.exit("Error in configuration file detected")
 
     # ------------------------------------------------------------------------
     #   Doing some tests.
@@ -40,6 +46,8 @@ def main() -> None:
     logging.debug("This is a debug message.")
 
     example_function()
+    myfunctions.some_function()
+    
 
 
 if __name__ == "__main__":

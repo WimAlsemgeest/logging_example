@@ -3,6 +3,8 @@ version: 1
 formatters:
   simple:
     format: '%(asctime)s - %(levelname)s - %(funcName)s - %(message)s'
+  detail:
+    format: '%(asctime)s - %(levelname)s - %(filename)s - %(funcName)s - Line: %(lineno)d - %(message)s'
 
 handlers:
   console:
@@ -12,17 +14,27 @@ handlers:
     stream: ext://sys.stdout
 
   file_handler:
-    class: logging.FileHandler
-    level: ERROR
+    class: logging.handlers.TimedRotatingFileHandler
+    level: INFO
     formatter: simple
+    when: W0
+    backupCount: 4
     filename: logfile.log
+
+  error_file_handler:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: ERROR
+    formatter: detail
+    when: W0
+    backupCount: 4
+    filename: errorlog.log
 
 loggers:
   myLogger:
     level: DEBUG
-    handlers: [console, file_handler]
+    handlers: [console, file_handler, error_file_handler]
     propagate: no
 
 root:
   level: DEBUG
-  handlers: [console, file_handler]
+  handlers: [console, file_handler, error_file_handler]
