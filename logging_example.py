@@ -12,12 +12,12 @@ def example_function() -> None:
     logger = logging.getLogger(__name__)
     print("This are messages from a function.")
 
-    logging.critical("This is a critical message from a function.")
-    logging.error("This is a error message from a function.")
-    logging.warning("This is a warning message from a function.")
-    logging.info("This is a info message from a function.")
-    logging.debug("This is a debug message from a function.")
-    
+    logger.critical("This is a critical message from a function.")
+    logger.error("This is a error message from a function.")
+    logger.warning("This is a warning message from a function.")
+    logger.info("This is a info message from a function.")
+    logger.debug("This is a debug message from a function.")
+
 
 def main() -> None:
     """Example of logging with yaml file."""
@@ -39,15 +39,14 @@ def main() -> None:
     print("Doing some logging tests.")
     logger = logging.getLogger(__name__)
 
-    logging.critical("This is a critical message.")
-    logging.error("This is a error message.")
-    logging.warning("This is a warning message.")
-    logging.info("This is a info message.")
-    logging.debug("This is a debug message.")
+    logger.critical("This is a critical message.")
+    logger.error("This is a error message.")
+    logger.warning("This is a warning message.")
+    logger.info("This is a info message.")
+    logger.debug("This is a debug message.")
 
     example_function()
     myfunctions.some_function()
-    
 
 
 if __name__ == "__main__":
