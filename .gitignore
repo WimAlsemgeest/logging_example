@@ -105,6 +105,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+lenv
+wenv
 
 # Spyder project settings
 .spyderproject
@@ -126,4 +128,4 @@ dmypy.json
 
 # my settings
 .vscode
-
+*.log.*
